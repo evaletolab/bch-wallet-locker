@@ -1,0 +1,16 @@
+@startuml
+Customer -> Wallet: send 1BCH
+Wallet -> Customer: Unlock code?
+
+Customer -> Oracle: send unlock code
+Oracle -> p2pNetwork: sign (unlock+time) code
+p2pNetwork <-> Wallet: unlocked transaction
+Wallet --> p2pNetwork: payment transaction
+note left
+	unlocked code is valid 
+end note
+Wallet --> Customer: unlock code is invalid
+note left
+	unlocked code is invalid 
+end note
+@enduml
