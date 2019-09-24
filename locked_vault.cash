@@ -1,0 +1,24 @@
+
+// This contract Lock the account and force the Owner(s) to get Authorization 
+// from Oracle before to spend 
+contract LockedVault(
+    pubkey ownerPk1,
+    pubkey ownerPk2,
+    pubkey oraclePk,
+    bytes32  unlockToken
+) {
+    function spend(sig ownerSig, datasig oSig, bytes oAuthToken) {
+        // message: Authorization Token
+        // accept only IFF unlockToken is provided by the Oracle 
+        require(sha256(oAuthToken) == unlockToken);
+
+
+        //
+        // Verify the Authorization service 
+        require(checkDataSig(oSig, oAuthToken, oraclePk));
+
+        //
+        // Verify one of the Owner is calling this function
+        require(checkMultiSig([ownerSig], [ownerPk1,ownerPk2]));
+    }
+}
