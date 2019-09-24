@@ -1,0 +1,4 @@
+@startuml
+Customer -> Wallet: Assign PK with secret code
+Wallet -> p2pNetwork: Create Vault transaction
+@enduml
