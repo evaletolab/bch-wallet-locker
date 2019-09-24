@@ -5,20 +5,31 @@ contract LockedVault(
     pubkey ownerPk1,
     pubkey ownerPk2,
     pubkey oraclePk,
-    bytes32  unlockToken
+    bytes32  unlockToken,
+    int timeout
 ) {
+    function refund(sig ownerSig) {
+        //
+        // Verify one of the Owner is calling this function
+        require(checkMultiSig([ownerSig], [ownerPk1,ownerPk2]));
+
+        //
+        // refund after a timeout
+        require(tx.time >= timeout);
+    }
+
     function spend(sig ownerSig, datasig oSig, bytes oAuthToken) {
         // message: Authorization Token
         // accept only IFF unlockToken is provided by the Oracle 
-        require((oAuthToken) == unlockToken);
+        require(oAuthToken == unlockToken);
 
+        //
+        // Verify one of the Owner is calling this function
+        require(checkMultiSig([ownerSig], [ownerPk1,ownerPk2]));
 
         //
         // Verify the Authorization service 
         require(checkDataSig(oSig, oAuthToken, oraclePk));
 
-        //
-        // Verify one of the Owner is calling this function
-        require(checkMultiSig([ownerSig], [ownerPk1,ownerPk2]));
     }
 }
