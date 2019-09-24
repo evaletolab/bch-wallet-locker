@@ -10,7 +10,7 @@ contract LockedVault(
     function spend(sig ownerSig, datasig oSig, bytes oAuthToken) {
         // message: Authorization Token
         // accept only IFF unlockToken is provided by the Oracle 
-        require(sha256(oAuthToken) == unlockToken);
+        require((oAuthToken) == unlockToken);
 
 
         //

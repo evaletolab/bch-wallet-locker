@@ -18,7 +18,6 @@ npm install -g ts-node
 git clone https://github.com/evaletolab/bch-wallet-locker
 cd  bch-wallet-locker
 npm install
-npm run vault
 ```
 
 # Usage
@@ -27,3 +26,14 @@ npm run vault
 ts-node locker-vault.ts
 node locker-vault.js
 ```
+
+# BCH Faucet on Testnet
+
+First time you will get the error: 
+```bash
+contract address: bchtest:pzd3jvwuqjwyrzm8xqks4k3l6wkyeygl5uthw875lp
+contract balance: 0
+--- ERR Error: Insufficient balance: available (0) < needed (1078).
+```
+
+* use the testnet faucet for Bitcoin Cash =>  https://developer.bitcoin.com/faucets/bch/

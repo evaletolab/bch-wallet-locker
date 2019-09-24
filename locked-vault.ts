@@ -17,6 +17,9 @@ class LockerOracle {
   }
 }
 
+
+//
+// CashScript initial 
 run();
 export async function run(): Promise<void> {
   // Initialise BITBOX
@@ -32,20 +35,34 @@ export async function run(): Promise<void> {
   const oracle: LockerOracle = new LockerOracle(bitbox.HDNode.toKeyPair(bitbox.HDNode.derive(hdNode, 1)));
 
   // Compile and instantiate HODL Vault
-  const HodlVault: Contract = Contract.fromCashFile(path.join(__dirname, 'hodl_vault.cash'), 'testnet');
+  const HodlVault: Contract = Contract.fromCashFile(path.join(__dirname, 'locked-vault.cash'), 'testnet');
   const instance: Instance = HodlVault.new(
+    bitbox.ECPair.toPublicKey(owner),
     bitbox.ECPair.toPublicKey(owner),
     bitbox.ECPair.toPublicKey(oracle.keypair),
     new Crypto().sha256(Buffer.from("Hello World"))
   );
 
-  // Produce new oracle message and signature
-  const oracleSecret: Buffer[] = oracle.unlock('hello world');
-  
-  // Spend from the vault
-  const tx: TxnDetailsResult = await instance.functions
-    .spend(new Sig(owner, 0x01), oracleSecret[1], oracleSecret[0])
-    .send(instance.address, 1000);
+  // Get contract balance & output address + balance
+  const contractBalance: number = await instance.getBalance();
+  console.log('contract address:', instance.address);
+  console.log('contract balance:', contractBalance);  
 
-  console.log(tx);
+
+  // Produce new oracle Token
+  const oracleSecret: Buffer[] = oracle.unlock('hello world');
+  console.log('Oracle Provider')
+  console.log('oracle token:', oracleSecret[0].toString('hex'));
+  console.log('oracle sig:', oracleSecret[1].toString('hex'));  
+
+  try{
+    // Spend from the vault
+    const tx: TxnDetailsResult = await instance.functions
+      .spend(new Sig(owner, 0x01), oracleSecret[1], oracleSecret[0])
+      .send(instance.address, 100);
+
+    console.log(tx);
+  }catch(err){
+    console.log('--- ERR',err)
+  }
 }
