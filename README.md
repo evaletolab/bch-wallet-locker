@@ -1,7 +1,7 @@
 # bch-wallet-locker
 This is a simple smart-contract experiment with CashScript . The purpose of this experiment is to create a Vault and lock you funds without the need of a third party custody. The wallet lock the found until a customized user secret code confirm the transaction. This Vault can be also extended with the usage of multisig. 
 
->WARNING: The security is not the purpose of this project. This idea is a pretext to use CDS with a custom Oracle Service
+>WARNING: The security is not the purpose of this project. This idea is a pretext to use CDS coupled with a custom PGP Oracle Provider
 
 
 ## Sequence for Vault usage
