@@ -1,5 +1,5 @@
 # bch-wallet-locker
-This is a simple smart-contract experiment with CashScript . The purpose of this experiment is to create a Vault that lock your funds without the need of a third party custody. The funds are locked until a PGP(HASH(secret code)) is available on the P2P Network for this Wallet. The Vault can be extended with a **multisig** usage. 
+This is a simple smart-contract experiment with CashScript . The purpose of this experiment is to create a Vault that lock your funds without the need of a third party custody. The funds are locked until a PGP(HASH(secret code)) is available on the P2P Network for this Wallet. The Vault can be extended with the usage of **multisig**. 
 
 >WARNING: The security is not the purpose of this project. This idea is a pretext to use CDS coupled with a custom PGP Oracle Provider
 
