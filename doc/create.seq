@@ -1,4 +1,6 @@
 @startuml
 Customer -> Wallet: Assign PK with secret code
-Wallet -> p2pNetwork: Create Vault transaction
+Wallet -> Oracle: Create PGP for this Vault
+Oracle -> Wallet: return PGP Public Key (OPK)
+Wallet -> p2pNetwork: Create Initial Vault transaction and Lock the Wallet
 @enduml
