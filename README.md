@@ -9,4 +9,4 @@ This is a simple CashScript experiment. The purpose of this experiment is to cre
 
 
 ## Sequence for Vault creation
-
+![image](https://user-images.githubusercontent.com/1422935/65511114-c02c3100-ded6-11e9-9f12-32262a724f63.png)
