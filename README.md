@@ -4,5 +4,9 @@ This is a simple CashScript experiment. The purpose of this experiment is to cre
 >WARNING: The security is not the purpose of this project. This idea is a pretext to use CDS with BCH and one custom Oracle service
 
 
-## Sequence diagram that explain the Vault mechanism
+## Sequence for Vault usage
 ![image](https://user-images.githubusercontent.com/1422935/65509959-00d67b00-ded4-11e9-87b5-e155de22b5ea.png)
+
+
+## Sequence for Vault creation
+
