@@ -5,7 +5,7 @@ This is a simple smart-contract experiment with CashScript . The purpose of this
 
 
 ## Sequence for Vault usage
-![image](https://user-images.githubusercontent.com/1422935/65509959-00d67b00-ded4-11e9-87b5-e155de22b5ea.png)
+![image](https://user-images.githubusercontent.com/1422935/65515726-01750e80-dee0-11e9-9821-0060f126e853.png)
 
 
 ## Sequence for Vault creation
